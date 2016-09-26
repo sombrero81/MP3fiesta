@@ -6,10 +6,16 @@
 package MP3fiesta.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,6 +28,20 @@ public class Album implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @OneToMany(mappedBy ="album")
+    private List<Piste>piste =new ArrayList<>();
+    
+    
+    
+    @ManyToMany
+    @JoinTable(name ="ARTISTE_ALBUM" )//table de jointure
+    private List<Artiste> artiste=new ArrayList<>();
+    
+    @ManyToMany
+    @JoinTable(name="GENRE_ALBUM")
+    private List<Genre> genre=new ArrayList<>();
+    
 
     public Long getId() {
         return id;

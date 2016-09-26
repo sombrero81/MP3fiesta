@@ -29,6 +29,10 @@ public class Chart implements Serializable {
     @JoinColumn(name ="PISTE_ID" )
     private Piste piste;
     
+    @ManyToOne
+    @JoinColumn(name ="CATEGORIE_CHART_ID" ) 
+    private CategorieChart categChart;
+    
 
     public Long getId() {
         return id;
